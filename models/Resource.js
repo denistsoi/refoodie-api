@@ -1,8 +1,11 @@
 class Resource {
   constructor(props) {
-    this.id   = props.id;
-    this.type = props.type;
-    this.donatedBy = props.user;
+    this.id        = props.id;             // number id
+    this.type      = props.type;           // string 'food', 'clothing', 'baby'
+    this.donatedBy = props.donatedBy;      // userId
+    this.image     = props.image;          // imageUrl
+    this.quantity  = props.quantity;       // quantity 
+    this.description = props.description;  // description of resource
     
     this.collected = null;
     this.status    = "PENDING";
@@ -11,12 +14,11 @@ class Resource {
     this.updatedAt = new Date().toISOString();
   }
 
-  pickedUp(user) {
-    this.updatedAt = new Date().toISOString();
-
-    this.status    = "Collected";
-    this.collected = user.id;
-  }
+  // pickUp(user) {
+  //   this.updatedAt = new Date().toISOString();
+  //   this.status    = "COLLECTED";
+  //   this.collected = user.id;
+  // }
 }
 
 

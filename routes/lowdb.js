@@ -8,14 +8,24 @@ db.defaults({ food: [], users: [] }).write();
 const User = require('../models/User');
 const Resource = require('../models/Resource');
 
+const { createUser, listUsers, retrieveUser } = require('./user');
+
 /**
  * create Food posting
  * @param {*} req 
  * @param {*} res 
  */
 const createFood = async (req, res) => {
-  const { name, details } = req.body;
-  const resource = new Resource({ name, details });
+  const { type, userId, imageUrl } = req.body;
+  
+  const id = await db.get('food').value().length + 1;
+
+  const resource = new Resource({ 
+    id, 
+    type,
+    donatedBy: userId, 
+    image: imageUrl,
+  });
 
   await db.get('food').push(resource).write();
   
@@ -31,47 +41,35 @@ const createFood = async (req, res) => {
  * @param {*} res 
  */
 const listFood = async (req, res) => {
+  // const food = await db.get('food').filter({ status: "PENDING" }).value();
   const food = await db.get('food').value();
   res.json({ food });
 }
 
-
-/**
- * create User Account
- * @param {*} req 
- * @param {*} res 
- */
-const createUser = async (req, res) => {
-  const { name, address, contact } = req.body;
+const reserveFood = async (req, res) => {
+  // console.log(req.body);
+  // const { id } = JSON.parse(req.body);
+  // res.json({ status: "OK" })
   
-  let id = await db.get('users').value().length + 1;
-
-  const user = new User({ id, name, address, contact });
-
-  try {
-    await db.get('users').push(user).write();
-    res.json({
-      status: "OK",
-      user
-    })
-  } catch (error) {
-    res.json({
-      status: "Error: fault creating user",
-      user,
-    })
-  }
-}
-
-const listUsers = async (req, res) => {
-  const users = await db.get('users')
+  const { id } = req.body;
+  const updatedAt = new Date().toISOString();
+  
+  const food = await db.get('food').find({ id }).assign({
+    updatedAt,
+    status: "COLLECTED"
+  }).value();
+  
   res.json({
-    userss
+    status: "OK",
+    food
   })
 }
-
 
 module.exports = {
   createUser,
   createFood,
   listFood,
+  listUsers,
+  retrieveUser,
+  reserveFood,
 }
