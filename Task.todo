@@ -1,0 +1,40 @@
+todo:
+
+✔ models: @done (2018-7-7 12:55:49)
+  ✔ - resource @done (2018-7-7 12:55:47)
+  ✔ - user @done (2018-7-7 12:55:48)
+  
+  resource {
+    createdAt: timestamp,
+    updatedAt: timestamp,
+
+    donatedBy
+    collected: {
+      timestamp,
+      account, --> account (contact number)
+    }
+  }
+
+  user {
+    id,
+    name,
+    location, 
+    createdAt,
+  }
+
+☐ api
+  ☐ - food posting model
+  ☐ - list foods
+  ☐ - create foods
+
+frontend 
+
+pickup
+  ☐ - show postings
+  ☐ - take job
+
+donator
+  ☐ - update posting
+
+☐ ops:
+  ☐ - buy domain

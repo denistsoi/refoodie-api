@@ -1,0 +1,16 @@
+{
+  "name": "refoodie-api",
+  "version": "1.0.0",
+  "description": "an api service to redistribute unwanted items to refugee communities",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "author": "Denis Tsoi <denistsoi@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "lowdb": "^1.0.0"
+  }
+}
