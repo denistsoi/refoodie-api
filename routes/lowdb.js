@@ -31,8 +31,8 @@ const createFood = async (req, res) => {
  * @param {*} res 
  */
 const listFood = async (req, res) => {
-  const foods = await db.get('food').value();
-  res.json({ foods });
+  const food = await db.get('food').value();
+  res.json({ food });
 }
 
 
