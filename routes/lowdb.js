@@ -47,17 +47,17 @@ const listFood = async (req, res) => {
 }
 
 const reserveFood = async (req, res) => {
-  // console.log(req.body);
-  // const { id } = JSON.parse(req.body);
-  // res.json({ status: "OK" })
   
   const { id } = req.body;
   const updatedAt = new Date().toISOString();
   
   const food = await db.get('food').find({ id }).assign({
     updatedAt,
-    status: "COLLECTED"
-  }).value();
+    status: "COLLECTED",
+    collected: true,
+  }).write();
+
+  // db.save();
   
   res.json({
     status: "OK",

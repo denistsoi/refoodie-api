@@ -35,7 +35,8 @@ const createUser = async (req, res) => {
  * @param {*} res 
  */
 const retrieveUser = async (req, res) => {
-  const { id } = req.body;
+  const id = Number(req.params.id);  
+  
   const user = await db.get('users').find({ id })
 
   if (!user) {
