@@ -13,12 +13,6 @@ class Resource {
     this.createdAt = new Date().toISOString();
     this.updatedAt = new Date().toISOString();
   }
-
-  // pickUp(user) {
-  //   this.updatedAt = new Date().toISOString();
-  //   this.status    = "COLLECTED";
-  //   this.collected = user.id;
-  // }
 }
 
 

@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
-
 const allowCrossDomain = (req, res, next) => {
   res.header('Access-Control-Allow-Origin', "*");
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -35,11 +34,10 @@ app.post('/api/user', routes.createUser);
 app.get('/api/users', routes.listUsers);
 
 // retrieve user details 
-// get user by id
 app.get('/api/user/:id', routes.retrieveUser);
 
 // update user details
-// app.put('/api/user/:id', routes.updateUser)
+app.put('/api/user/:id', routes.updateUser);
 
 
 app.listen(process.env.PORT, () => {

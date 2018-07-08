@@ -22,16 +22,6 @@ todo:
     createdAt,
   }
 
-☐ api
-  ☐ - food posting model
-  ☐ - list foods
-  ☐ - create foods
-
-  ☐ migrate to 
-  ☐ migrate to RDS / mlab
-
-frontend 
-
 pickup
   ☐ - show postings
   ☐ - take job

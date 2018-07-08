@@ -30,6 +30,16 @@ const createUser = async (req, res) => {
 }
 
 /**
+ * listUsers
+ * @param {*} req 
+ * @param {*} res 
+ */
+const listUsers = async (req, res) => {
+  const users = await db.get('users').value()
+  res.json({ users });
+}
+
+/**
  * retrieveUser
  * @param {*} req 
  * @param {*} res 
@@ -50,19 +60,30 @@ const retrieveUser = async (req, res) => {
 };
 
 /**
- * 
+ * updateUser
  * @param {*} req 
  * @param {*} res 
  */
-const listUsers = async (req, res) => {
-  const users = await db.get('users').value()
-  res.json({ users });
-}
+const updateUser = async (req, res) => {
+  const id = Number(req.params.id);
+  const data = req.body;
 
+  const user = await db.get('users').find({ id });
+
+  if (!user) {
+    res.json({ 
+      status: "Error",
+      message: "User is not found"
+    })
+  }
+
+  res.json({ user });
+}
 
 
 module.exports = {
   createUser, 
   listUsers,
-  retrieveUser
+  retrieveUser,
+  updateUser,
 }

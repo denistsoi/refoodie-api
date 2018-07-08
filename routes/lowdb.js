@@ -8,7 +8,7 @@ db.defaults({ food: [], users: [] }).write();
 const User = require('../models/User');
 const Resource = require('../models/Resource');
 
-const { createUser, listUsers, retrieveUser } = require('./user');
+const { createUser, listUsers, retrieveUser, updateUser } = require('./user');
 
 /**
  * create Food posting
@@ -41,13 +41,16 @@ const createFood = async (req, res) => {
  * @param {*} res 
  */
 const listFood = async (req, res) => {
-  // const food = await db.get('food').filter({ status: "PENDING" }).value();
   const food = await db.get('food').value();
   res.json({ food });
 }
 
+/**
+ * reserveFood
+ * @param {*} req 
+ * @param {*} res 
+ */
 const reserveFood = async (req, res) => {
-  
   const { id } = req.body;
   const updatedAt = new Date().toISOString();
   
@@ -57,19 +60,19 @@ const reserveFood = async (req, res) => {
     collected: true,
   }).write();
 
-  // db.save();
-  
   res.json({
     status: "OK",
     food
-  })
+  });
 }
 
 module.exports = {
   createUser,
-  createFood,
-  listFood,
   listUsers,
   retrieveUser,
+  updateUser,
+
+  createFood,
+  listFood,
   reserveFood,
 }
